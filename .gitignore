@@ -1,3 +1,5 @@
 node_modules
 typings
 README_Internal.md
+app/**/*.js
+app/**/*.js.map

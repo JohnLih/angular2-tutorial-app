@@ -3,8 +3,16 @@
         (click)="selectProject(project)"
         [class.selected]="project.id == selectedProject?.id">
     <span class="mdl-list__item-primary-content">
+        <!-- using ngIf directive -->
+        <i *ngIf="project.isCompleted" class="material-icons mdl-list__item-icon">check_circle</i>
+        <i *ngIf="!project.isCompleted" class="material-icons mdl-list__item-icon">radio_button_unchecked</i>
+        
+        <!-- using ngSwitch directive -->
+        <!--<i [ngSwitch]="project.isCompleted" class="material-icons mdl-list__item-icon">
+            <template [ngSwitchWhen]="true">check_circle</template>
+            <template [ngSwitchWhen]="false">radio_button_unchecked</template>
+        </i>-->
         {{project.name}}
     </span>
-    <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">mode edit</i></a>
   </div>
 </div>

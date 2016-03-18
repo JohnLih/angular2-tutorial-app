@@ -93,9 +93,17 @@ export class ProjectListComponent{
     }
     
     /**
+     * Selects first project on component initialization
+     */
+    selectFirstProject(){
+        this.selectProject(this.projects[0]);
+    }
+    
+    /**
      * Component's hook which is executed on component initialization phase
      */
     ngOnInit(){
         this.loadProjects();
+        this.selectFirstProject();
     }
 }

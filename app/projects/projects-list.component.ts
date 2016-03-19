@@ -1,4 +1,4 @@
-import {Component, OnInit} from 'angular2/core';
+import {Component, OnInit, Output, EventEmitter} from 'angular2/core';
 
 @Component({
     selector: 'projects-list',
@@ -16,6 +16,7 @@ import {Component, OnInit} from 'angular2/core';
 })
 export class ProjectListComponent{
     
+    @Output() projectSelect = new EventEmitter();
     /**
      * List of projects
      */
@@ -114,6 +115,7 @@ export class ProjectListComponent{
      */
     selectProject(selectedProject){
         this.selectedProject = selectedProject;
+        this.projectSelect.emit(this.selectedProject);
     }
     
     /**

@@ -1,0 +1,13 @@
+.project-detail-card {
+    width: 100%;
+}
+    
+.project-detail-container dd,
+.project-detail-container dl {
+    margin: 0;
+}
+    
+.employee-detail-table{
+    min-width: 500px;
+    margin-top: 10px;
+}

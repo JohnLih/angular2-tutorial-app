@@ -1,5 +1,17 @@
 <div class="mdl-grid">
+  <!-- 1. Communication using local variable -->
+  <!--<div class="mdl-cell mdl-cell--3-col">
+      <projects-list #projectList></projects-list>
+  </div>
+  <div class="mdl-cell mdl-cell--9-col">
+      <project-detail [project]="projectList.selectedProject"></project-detail>
+  </div>-->
+  
+  <!-- 2. Communication using event binding -->
   <div class="mdl-cell mdl-cell--3-col">
-      <projects-list></projects-list>
+      <projects-list (projectSelect)="onProjectSelect($event)"></projects-list>
+  </div>
+  <div class="mdl-cell mdl-cell--9-col">
+      <project-detail [project]="selectedProject"></project-detail>
   </div>
 </div>

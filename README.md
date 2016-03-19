@@ -12,3 +12,9 @@ Displaying Projects list which covers below angular 2 concepts:
 - Built-im structural directive
 - One-way data binding, property binding and event binding
 - Component lifecycle hooks
+
+## Step 3
+Displaying selected project details. This shows how to perform communication using below concepts:
+- @Input decorator
+- Communication using local variable in template
+- Communication using event binding and @Output decorator

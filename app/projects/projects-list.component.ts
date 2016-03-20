@@ -46,7 +46,7 @@ export class ProjectListComponent{
             client: {
                 id: 1,
                 name: 'Client 1',
-                timezon: 'PST',
+                timezone: 'PST',
                 country: 'USA',
                 email: 'client1@domain.com'
             },
@@ -66,7 +66,7 @@ export class ProjectListComponent{
             client: {
                 id: 2,
                 name: 'Client 2',
-                timezon: 'IST',
+                timezone: 'IST',
                 country: 'India',
                 email: 'client2@domain.com'
             },
@@ -84,7 +84,7 @@ export class ProjectListComponent{
             client: {
                 id: 3,
                 name: 'Client 3',
-                timezon: 'CET',
+                timezone: 'CET',
                 country: 'Germany',
                 email: 'client3@domain.com'
             },
@@ -103,7 +103,7 @@ export class ProjectListComponent{
             client: {
                 id: 4,
                 name: 'Client 4',
-                timezon: 'AEST',
+                timezone: 'AEST',
                 country: 'Austrilia',
                 email: 'client4@domain.com'
             },

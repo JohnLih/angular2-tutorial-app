@@ -1,0 +1,9 @@
+.mdl-card.popover{
+    position: absolute;
+    top: 0;
+    min-height: auto;
+}
+
+.popover .popover-content{
+    padding: 16px;
+}

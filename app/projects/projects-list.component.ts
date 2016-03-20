@@ -1,5 +1,6 @@
 import {Component, OnInit, Output, EventEmitter} from 'angular2/core';
 import {ProjectsFilterPipe} from './projects-filter.pipe';
+import {MaterializeElementDirective} from '../shared/directives/materialize-element.directive';
 
 @Component({
     selector: 'projects-list',
@@ -14,7 +15,8 @@ import {ProjectsFilterPipe} from './projects-filter.pipe';
             background-color: #eaeaea;
         }
     `],
-    pipes: [ProjectsFilterPipe]
+    pipes: [ProjectsFilterPipe],
+    directives: [MaterializeElementDirective]
 })
 export class ProjectListComponent{
     

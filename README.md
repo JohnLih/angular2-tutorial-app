@@ -23,3 +23,8 @@ Displaying selected project details. This shows how to perform communication usi
 Displaying date in readable format and filtering projects by name. This covers below angular 2 concepts:
 - Built-in pipes
 - How to create custom filter pipe
+
+## Step 5
+Converting filter textbox to material design text field and showing client details in popover. This covers below angular 2 concepts:
+- How to create custom attribute directives
+- Usage of third party library, like jquery, in directive

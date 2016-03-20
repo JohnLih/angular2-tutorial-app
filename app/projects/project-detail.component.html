@@ -16,7 +16,34 @@
                 <div class="mdl-cell mdl-cell--6-col">
                     <dl>
                         <dt>Client Name</dt>
-                        <dd>{{project.client?.name}}</dd>
+                        <dd>{{project.client?.name}}
+                                 <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" popover 
+                                 [template]="clientDetailTpl" [title]="'Client Details'">
+                                    <i class="material-icons">info</i>
+                                </button>
+                                <div #clientDetailTpl>
+                                    <div class="mdl-grid">
+                                        <div class="mdl-cell mdl-cell--6-col">
+                                            <dl>
+                                                <dt>Timezone</dt>
+                                                <dd>{{project.client?.timezone}}</dd>
+                                            </dl>   
+                                        </div>
+                                        <div class="mdl-cell mdl-cell--6-col">
+                                            <dl>
+                                                <dt>Country</dt>
+                                                <dd>{{project.client?.country}}</dd>
+                                            </dl>   
+                                        </div>
+                                        <div class="mdl-cell mdl-cell--6-col">
+                                            <dl>
+                                                <dt>Email</dt>
+                                                <dd>{{project.client?.email}}</dd>
+                                            </dl>    
+                                        </div>
+                                    </div>
+                                </div>
+                        </dd>
                     </dl>
                 </div>
                 <div class="mdl-cell mdl-cell--6-col">

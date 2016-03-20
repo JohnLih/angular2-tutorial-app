@@ -9,7 +9,7 @@ Bootstrapping app with root component
 ## Step 2
 Displaying Projects list which covers below angular 2 concepts:
 - Component nesting
-- Built-im structural directive
+- Built-in structural directive
 - One-way data binding, property binding and event binding
 - Component lifecycle hooks
 
@@ -18,3 +18,8 @@ Displaying selected project details. This shows how to perform communication usi
 - @Input decorator
 - Communication using local variable in template
 - Communication using event binding and @Output decorator
+
+## Step 4
+Displaying date in readable format and filtering projects by name. This covers below angular 2 concepts:
+- Built-in pipes
+- How to create custom filter pipe

@@ -1,4 +1,5 @@
 import {Component, OnInit, Output, EventEmitter} from 'angular2/core';
+import {ProjectsFilterPipe} from './projects-filter.pipe';
 
 @Component({
     selector: 'projects-list',
@@ -12,7 +13,8 @@ import {Component, OnInit, Output, EventEmitter} from 'angular2/core';
         .selected{
             background-color: #eaeaea;
         }
-    `]
+    `],
+    pipes: [ProjectsFilterPipe]
 })
 export class ProjectListComponent{
     
@@ -26,6 +28,11 @@ export class ProjectListComponent{
      * Selected project from the list
      */
     selectedProject: any = null;
+    
+    /**
+     * Query text to filter projects by their name
+     */
+    filterText: string;
     
     /**
      * Loads projects

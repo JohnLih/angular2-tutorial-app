@@ -3,3 +3,5 @@ typings
 README_Internal.md
 app/**/*.js
 app/**/*.js.map
+api/**/*.js
+api/**/*.js.map

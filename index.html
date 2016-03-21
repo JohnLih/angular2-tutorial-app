@@ -17,6 +17,8 @@
     <script src="node_modules/angular2/bundles/angular2.dev.js"></script>
     <script src="node_modules/material-design-lite/material.min.js"></script>
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="node_modules/angular2/bundles/http.dev.js"></script>
+    <script src="node_modules/a2-in-memory-web-api/web-api.js"></script>
     
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
@@ -26,6 +28,10 @@
       System.config({
         packages: {        
           app: {
+            format: 'register',
+            defaultExtension: 'js'
+          },
+          api: {
             format: 'register',
             defaultExtension: 'js'
           }

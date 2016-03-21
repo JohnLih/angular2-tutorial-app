@@ -4,6 +4,7 @@
   "description": "A sample app to show how all the building blocks of angular 2 works",
   "main": "index.js",
   "dependencies": {
+    "a2-in-memory-web-api": "^0.1.11",
     "angular2": "2.0.0-beta.9",
     "es6-promise": "^3.0.2",
     "es6-shim": "^0.33.3",

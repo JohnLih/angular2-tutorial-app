@@ -46,7 +46,10 @@ export class ProjectListComponent{
      * Loads projects
      */
     loadProjects(){
-        this.projects = this._projectService.getProjects();
+        this._projectService.getProjects().subscribe((projects) => {
+            this.projects = projects;
+            this.selectFirstProject();
+        });
     }
     
     /**
@@ -69,6 +72,5 @@ export class ProjectListComponent{
      */
     ngOnInit(){
         this.loadProjects();
-        this.selectFirstProject();
     }
 }

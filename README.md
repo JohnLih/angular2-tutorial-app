@@ -41,4 +41,7 @@ Moving hardcoded project data to project service. This covers below angular 2 co
 As we know that project data is going to come from some api, it is good to have models/interfaces for all entities for better maintainability. 
 So in this step we created project model class and interfaces for employee and client. Then we added type annotation wherever project entity is used.
 
+### Step 6.3
+Using Http service of angular 2 to load project list. Here, we are using a2-in-memory-web-api simulator to simulate Http calls.
+
 

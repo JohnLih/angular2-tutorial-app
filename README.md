@@ -28,3 +28,13 @@ Displaying date in readable format and filtering projects by name. This covers b
 Converting filter textbox to material design text field and showing client details in popover. This covers below angular 2 concepts:
 - How to create custom attribute directives
 - Usage of third party library, like jquery, in directive
+
+## Step 6
+Fetching project data from dummy api to show use of services, dependency injection and Http service.
+
+### Step 6.1
+Moving hardcoded project data to project service. This covers below angular 2 concepts:
+- Usage of angular 2 service
+- How dependency injection works
+
+

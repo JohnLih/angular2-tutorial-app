@@ -2,6 +2,7 @@ import {Component, OnInit, Output, EventEmitter} from 'angular2/core';
 import {ProjectsFilterPipe} from './projects-filter.pipe';
 import {MaterializeElementDirective} from '../shared/directives/materialize-element.directive';
 import {ProjectService} from './project.service';
+import {Project} from './project.model';
 
 @Component({
     selector: 'projects-list',
@@ -25,12 +26,12 @@ export class ProjectListComponent{
     /**
      * List of projects
      */
-    projects: any[] = [];
+    projects: Project[] = [];
     
     /**
      * Selected project from the list
      */
-    selectedProject: any = null;
+    selectedProject: Project = null;
     
     /**
      * Query text to filter projects by their name

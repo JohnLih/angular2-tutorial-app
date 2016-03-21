@@ -1,10 +1,11 @@
 import {Injectable} from 'angular2/core';
+import {Project} from './project.model';
 
 @Injectable()
 export class ProjectService {
 
     getProjects() {
-        return [{
+        return <Project[]>[{
             id: 1,
             name: 'Project 1',
             client: {

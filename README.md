@@ -37,4 +37,8 @@ Moving hardcoded project data to project service. This covers below angular 2 co
 - Usage of angular 2 service
 - How dependency injection works
 
+### Step 6.2
+As we know that project data is going to come from some api, it is good to have models/interfaces for all entities for better maintainability. 
+So in this step we created project model class and interfaces for employee and client. Then we added type annotation wherever project entity is used.
+
 

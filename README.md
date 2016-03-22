@@ -44,4 +44,8 @@ So in this step we created project model class and interfaces for employee and c
 ### Step 6.3
 Using Http service of angular 2 to load project list. Here, we are using a2-in-memory-web-api simulator to simulate Http calls.
 
+### Step 6.4
+Adding methods for CRUD operation of project. Common exception service is created to handle exeption from project, employee and client services. This shows how to 
+inject dependency in service.
+
 

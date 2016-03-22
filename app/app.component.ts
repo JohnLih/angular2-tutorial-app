@@ -1,6 +1,5 @@
 import {Component, provide} from 'angular2/core';
 import {ProjectsComponent} from './projects/projects.component';
-import {ProjectService} from './projects/project.service';
 import {ExceptionService} from './shared/services/exception.service';
 import {XHRBackend, HTTP_PROVIDERS} from 'angular2/http';
 import {InMemoryBackendService, SEED_DATA} from 'a2-in-memory-web-api/core';
@@ -13,7 +12,6 @@ import {InMemoryDataService} from '../api/in-memory-data.service';
     directives: [ProjectsComponent],
     providers: [
         HTTP_PROVIDERS,
-        ProjectService, 
         ExceptionService,
         provide(XHRBackend, {useClass: InMemoryBackendService}), 
         provide(SEED_DATA, {useClass: InMemoryDataService})

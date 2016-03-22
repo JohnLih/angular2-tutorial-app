@@ -2,10 +2,12 @@ import {Component} from 'angular2/core';
 import {ProjectListComponent} from './projects-list.component';
 import {ProjectDetailComponent} from './project-detail.component';
 import {Project} from './project.model';
+import {ProjectService} from './project.service';
 
 @Component({
     selector: 'projects',
     templateUrl: 'app/projects/projects.component.html',
+    providers: [ProjectService],
     directives: [ProjectListComponent, ProjectDetailComponent]
 })
 export class ProjectsComponent{

@@ -80,6 +80,70 @@ export class InMemoryDataService {
                 ]
             }];
 
-        return { projects };
+        let employees = [
+            {
+                id: 1,
+                name: 'Employee 1',
+                role: 'FrontEnd Developer',
+                email: 'emp1@domain.com'
+            },
+            {
+                id: 2,
+                name: 'Employee 2',
+                role: 'BackEnd Developer',
+                email: 'emp2@domain.com'
+            },
+            {
+                id: 3,
+                name: 'Employee 3',
+                role: 'Tester',
+                email: 'emp3@domain.com'
+            },
+            {
+                id: 4,
+                name: 'Employee 4',
+                role: 'Project Manager',
+                email: 'emp4@domain.com'
+            },
+            { 
+                id: 5, 
+                name: 'Employee 5', 
+                role: 'FullStack Developer', 
+                email: 'emp5@domain.com' 
+            }
+        ];
+
+        let clients = [
+            {
+                id: 1,
+                name: 'Client 1',
+                timezone: 'PST',
+                country: 'USA',
+                email: 'client1@domain.com'
+            },
+            {
+                id: 2,
+                name: 'Client 2',
+                timezone: 'IST',
+                country: 'India',
+                email: 'client2@domain.com'
+            },
+            {
+                id: 3,
+                name: 'Client 3',
+                timezone: 'CET',
+                country: 'Germany',
+                email: 'client3@domain.com'
+            },
+            {
+                id: 4,
+                name: 'Client 4',
+                timezone: 'AEST',
+                country: 'Austrilia',
+                email: 'client4@domain.com'
+            }
+        ];
+        
+        return { projects, employees, clients };
     }
 }

@@ -4,9 +4,9 @@
         <div class="mdl-cell mdl-cell--4-col">
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 <input class="mdl-textfield__input" type="text" id="projectName" [(ngModel)]="project.name" ngControl="projectName" #projectName="ngForm"
-                required/>
+                required suppressMDLInitValidation />
                 <label class="mdl-textfield__label" for="projectName">Project Name*</label>
-                <span *ngIf="!projectName.valid" class="mdl-textfield__error">Please enter project name</span>
+                <span *ngIf="!projectName.valid && !projectName.pristine" class="mdl-textfield__error">Please enter project name</span>
             </div>
         </div>
         <div class="mdl-cell mdl-cell--4-col">

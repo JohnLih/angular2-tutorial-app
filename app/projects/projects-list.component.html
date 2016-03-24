@@ -1,12 +1,18 @@
-<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" id="filterProjects" materializeElement>
-    <input class="mdl-textfield__input" type="text" id="filterTxt" (keyup)="filterText = $event.target.value" />
-    <label class="mdl-textfield__label" for="filterTxt">Filter...</label>
-</div>
-<div class="projects-list mdl-list">
-    <div class="mdl-list__item" *ngFor="#project of projects | projectsFilter: filterText" 
-            (click)="selectProject(project)" 
-            [class.selected]="project.id == selectedProject?.id">
-        <span class="mdl-list__item-primary-content">
+<div class="projects-list-container" materialize>
+    <div class="list-top-bar">
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" id="filterProjects">
+            <input class="mdl-textfield__input" type="text" id="filterTxt" (keyup)="filterText = $event.target.value" />
+            <label class="mdl-textfield__label" for="filterTxt">Filter...</label>
+        </div>
+        <button id="btnAddProject" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored"
+            (click)="addNewProject()">
+            <i class="material-icons">add</i>
+        </button>
+        <div class="mdl-tooltip" for="btnAddProject">Add Project</div>
+    </div>
+    <div class="projects-list mdl-list">
+        <div class="mdl-list__item" *ngFor="#project of projects | projectsFilter: filterText" (click)="selectProject(project)" [class.selected]="project.id == selectedProject?.id">
+            <span class="mdl-list__item-primary-content">
         <!-- using ngIf directive -->
         <i *ngIf="project.isCompleted" class="material-icons mdl-list__item-icon">check_circle</i>
         <i *ngIf="!project.isCompleted" class="material-icons mdl-list__item-icon">radio_button_unchecked</i>
@@ -18,5 +24,6 @@
         </i>-->
         {{project.name}}
     </span>
+        </div>
     </div>
 </div>

@@ -10,6 +10,7 @@ import {MaterializeDirective} from '../shared/directives/materialize.directive';
 import {MaterialSelect} from '../shared/directives/material-select.component';
 import {MaterialDatepicker} from '../shared/directives/material-datepicker.directive';
 import {MaterialToggle} from '../shared/directives/material-toggle.directive';
+import {MDLIntialValidationSuppressor} from '../shared/directives/mdl-init-validation-suppressor.directive';
 import {Observable} from 'rxjs/Rx';
 import {Response} from 'angular2/http';
 
@@ -17,7 +18,8 @@ import {Response} from 'angular2/http';
     selector: 'project-form',
     templateUrl: 'app/projects/project-form.component.html',
     providers: [EmployeeService, ClientService],
-    directives: [MaterializeDirective, MaterialSelect, MaterialDatepicker, MaterialToggle, ProjectEmployeeListComponent],
+    directives: [MaterializeDirective, MaterialSelect, MaterialDatepicker, 
+        MaterialToggle, MDLIntialValidationSuppressor, ProjectEmployeeListComponent],
     styles: [`
         .mdl-textfield.project-details-field{
             width: 100%;
@@ -34,7 +36,11 @@ export class ProjectFormComponent implements OnInit {
     
     @Input() 
     set projectId(id: number){
-        this.loadProject(id);
+        if(id){
+            this.loadProject(id);    
+        }else{
+            this.project = new Project();
+        }
     }
     
     @Output()
@@ -132,8 +138,9 @@ export class ProjectFormComponent implements OnInit {
         }else{
             observable = this._projectService.addProject(this.project);
         }
-        observable.subscribe((result) => {
-            this.changesSaved.emit(this.project);    
+        observable.subscribe((result: any) => {
+            // passing project id for maintaining project selection
+            this.changesSaved.emit(result ? result.id : this.project.id);    
         });
     }
     

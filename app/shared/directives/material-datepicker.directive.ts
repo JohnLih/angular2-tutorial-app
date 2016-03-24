@@ -11,7 +11,9 @@ export class MaterialDatepicker{
     
     @Input()
     set ngModel(value){
-        this._el.nativeElement.value = moment(value).format(this.format);
+        if(value){
+            this._el.nativeElement.value = moment(value).format(this.format);    
+        }
     }
     
     @Input() format: string = 'MM/DD/YYYY';
@@ -29,6 +31,7 @@ export class MaterialDatepicker{
             var dt = moment($ele.val(), this.format).toDate();
             this.ngModelChange.emit(dt);
             $ele.parent('.mdl-textfield').removeClass('is-focused');
+            $ele.parent('.mdl-textfield').addClass('is-dirty');
         });
     }
     

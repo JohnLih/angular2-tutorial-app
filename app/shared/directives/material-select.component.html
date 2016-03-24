@@ -1,0 +1,10 @@
+<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" [class.is-dirty]="!!selectedValue" >
+    <input class="mdl-textfield__input" type="text" id="{{name}}" #selectedText [value]="displayOptionFn(selectedValue)" readonly tabIndex="-1">
+    <label [attr.for]="name">
+        <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
+    </label>
+    <label [attr.for]="name" class="mdl-textfield__label">{{label}}</label>
+    <ul [attr.for]="name" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+        <li class="mdl-menu__item" *ngFor="#item of items" (click)="selectItem(item)" [style.width]="selectedText.clientWidth">{{displayOptionFn(item)}}</li>
+    </ul>
+</div>

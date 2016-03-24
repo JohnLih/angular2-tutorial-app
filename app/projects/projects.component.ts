@@ -41,4 +41,9 @@ export class ProjectsComponent{
         this.isAddOrEdit = true; 
         this.selectedProject = null;
     }
+    
+    onProjectDelete(projectId: number){
+        this.projectListComponent.removeProjectFromList(projectId);
+        this.projectListComponent.selectFirstProject();
+    }
 }

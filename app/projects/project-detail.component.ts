@@ -1,5 +1,6 @@
 import {Component, Input, Output, EventEmitter} from 'angular2/core';
 import {Project} from './project.model';
+import {ProjectService} from './project.service';
 import {PopoverDirective} from '../shared/directives/popover.directive';
 import {ProjectEmployeeListComponent} from './project-employee-list.component';
 
@@ -12,8 +13,19 @@ import {ProjectEmployeeListComponent} from './project-employee-list.component';
 export class ProjectDetailComponent{
     @Input() project;
     @Output() edit: EventEmitter<Project> = new EventEmitter();
+    @Output() delete: EventEmitter<number> = new EventEmitter();
+    
+    constructor(private _projectService: ProjectService){}
     
     editProject(project: Project){
         this.edit.emit(project);
+    }
+    
+    deleteProject(project: Project){
+        if(window.confirm('Are you sure you want to delete this project?')){
+            this._projectService.deleteProject(project).subscribe(()=>{
+                this.delete.emit(project.id);    
+            });    
+        }
     }
 }

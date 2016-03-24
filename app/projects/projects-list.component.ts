@@ -62,9 +62,12 @@ export class ProjectListComponent {
      * Sets selected project on click of any project from the list
      */
     selectProject(selectedProject) {
-        console.log('selected project is ', selectedProject);
         this.selectedProject = selectedProject;
         this.projectSelect.emit(this.selectedProject);
+    }
+    
+    getProjectById(projectId: number){
+        return this.projects.filter(project => project.id === projectId)[0];
     }
     
     /**
@@ -72,8 +75,8 @@ export class ProjectListComponent {
      * to select added/edited project.
      */
     selectProjectById(projectId: number){
-        var project = this.projects.filter(project => project.id === projectId);
-        this.selectProject(project[0]);
+        var project = this.getProjectById(projectId);
+        this.selectProject(project);
     }
     
     /**
@@ -87,7 +90,12 @@ export class ProjectListComponent {
         // passing null just to avoid compilation error by typescript
         this.addProject.emit(null);
     }
-
+    
+    removeProjectFromList(projectId: number){
+        var project = this.getProjectById(projectId);
+        this.projects.splice(this.projects.indexOf(project), 1);
+    }
+    
     /**
      * Component's hook which is executed on component initialization phase
      */

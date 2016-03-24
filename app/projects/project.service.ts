@@ -42,7 +42,7 @@ export class ProjectService {
     deleteProject(oProject: Project){
         return this._http
             .delete(`${this.url}/${oProject.id}`)
-            .map(res => <Project>res.json().data)
+            .map(res => res.json() ? res.json().data : null)
             .catch(this._excpetionService.handleError);
     }
 }

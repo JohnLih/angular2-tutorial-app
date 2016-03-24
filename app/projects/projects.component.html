@@ -12,7 +12,7 @@
       <projects-list #projectsList (projectSelect)="onProjectSelect($event)" (addProject)="onProjectAdd()"></projects-list>
   </div>
   <div class="mdl-cell mdl-cell--9-col">
-      <project-detail *ngIf="!isAddOrEdit" [project]="selectedProject" (edit)="isAddOrEdit = true"></project-detail>
+      <project-detail *ngIf="!isAddOrEdit" [project]="selectedProject" (edit)="isAddOrEdit = true" (delete)="onProjectDelete($event)"></project-detail>
       <project-form *ngIf="isAddOrEdit" [projectId]="selectedProject?.id" 
         (changesCancelled) = "isAddOrEdit = false" (changesSaved)= "onProjectDataSaved($event)"></project-form>
   </div>  

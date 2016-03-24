@@ -4,7 +4,7 @@
             <h2 class="mdl-card__title-text">{{project.name}}</h2>
         </div>
         <div class="mdl-card__menu">
-            <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+            <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" (click)="editProject(project)">
                 <i class="material-icons">mode_edit</i>
             </button>
             <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
@@ -80,24 +80,8 @@
                     <dl>
                         <dt>Employees</dt>
                         <dd>
-                            <table class="employee-detail-table mdl-data-table mdl-js-data-table mdl-shadow--1dp">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th class="mdl-data-table__cell--non-numeric">Name</th>
-                                        <th class="mdl-data-table__cell--non-numeric">Role</th>
-                                        <th class="mdl-data-table__cell--non-numeric">Email</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="#employee of project.employees; #i = index">
-                                        <td>{{i+1}}</td>
-                                        <td class="mdl-data-table__cell--non-numeric">{{employee.name}}</td>
-                                        <td class="mdl-data-table__cell--non-numeric">{{employee.role}}</td>
-                                        <td class="mdl-data-table__cell--non-numeric">{{employee.email}}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <project-employee-list [employees]="project.employees">
+                            </project-employee-list>
                         </dd>
                     </dl>
                 </div>

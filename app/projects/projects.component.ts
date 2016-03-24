@@ -1,6 +1,7 @@
 import {Component} from 'angular2/core';
 import {ProjectListComponent} from './projects-list.component';
 import {ProjectDetailComponent} from './project-detail.component';
+import {ProjectFormComponent} from './project-form.component';
 import {Project} from './project.model';
 import {ProjectService} from './project.service';
 
@@ -8,7 +9,7 @@ import {ProjectService} from './project.service';
     selector: 'projects',
     templateUrl: 'app/projects/projects.component.html',
     providers: [ProjectService],
-    directives: [ProjectListComponent, ProjectDetailComponent]
+    directives: [ProjectListComponent, ProjectDetailComponent, ProjectFormComponent]
 })
 export class ProjectsComponent{
     /**
@@ -16,6 +17,8 @@ export class ProjectsComponent{
      * No need of below code if you are passing data using local variable in template. 
      */
     selectedProject: Project;
+    
+    isAddOrEdit: boolean = false;
     
     /**
      * Passes selectedProject object to project-detail component on selection change in project-list component.

@@ -1,0 +1,24 @@
+<table class="employee-detail-table mdl-data-table mdl-js-data-table mdl-shadow--1dp">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th class="mdl-data-table__cell--non-numeric">Name</th>
+            <th class="mdl-data-table__cell--non-numeric">Role</th>
+            <th class="mdl-data-table__cell--non-numeric">Email</th>
+            <th class="mdl-data-table__cell--non-numeric" *ngIf="isShowAction">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="#employee of employees; #i = index">
+            <td>{{i+1}}</td>
+            <td class="mdl-data-table__cell--non-numeric">{{employee.name}}</td>
+            <td class="mdl-data-table__cell--non-numeric">{{employee.role}}</td>
+            <td class="mdl-data-table__cell--non-numeric">{{employee.email}}</td>
+            <td class="mdl-data-table__cell--non-numeric" *ngIf="isShowAction">
+                <button class="mdl-button mdl-js-button mdl-button--icon" title="Remove Employee" (click)="removeEmployee(employee, i)">
+                    <i class="material-icons">delete</i>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>

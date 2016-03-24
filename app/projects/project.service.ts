@@ -28,14 +28,14 @@ export class ProjectService {
     addProject(oProject: Project){
         return this._http
             .post(this.url, JSON.stringify(oProject))
-            .map(res => res.json().data)
+            .map(res => res.json() ? res.json().data : null)
             .catch(this._excpetionService.handleError);
     }
     
     updateProject(oProject: Project){
         return this._http
             .put(`${this.url}/${oProject.id}`, JSON.stringify(oProject))
-            .map(res => res.json().data)
+            .map((res) => res.json() ? res.json().data : null)
             .catch(this._excpetionService.handleError);
     }
     

@@ -7,3 +7,7 @@
 .popover .popover-content{
     padding: 16px;
 }
+
+.text-right{
+    text-align: right;
+}

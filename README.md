@@ -48,4 +48,10 @@ Using Http service of angular 2 to load project list. Here, we are using a2-in-m
 Adding methods for CRUD operation of project. Common exception service is created to handle exeption from project, employee and client services. This shows how to 
 inject dependency in service.
 
+### Step 7
+Adding functionality to add/update/delete project. This covers below angular 2 concepts:
+- Usage of ngModel directive
+- How to implement custom two-way data binding
+- How to maintain validity of form using ngControl and ngForm
+- Usage of ViewChild decorator to access child component's methods from parent component 
 

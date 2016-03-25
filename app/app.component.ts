@@ -10,7 +10,7 @@ import {ProjectService} from './projects/project.service';
 
 @RouteConfig([
     {path: '/', name: 'Dashboard', component: DashboardComponent, useAsDefault: true},
-    {path: '/project', name: 'Projects', component: ProjectsComponent},
+    {path: '/project/...', name: 'Projects', component: ProjectsComponent},
 ])
 @Component({
     selector: 'pm-app',

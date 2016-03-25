@@ -1,5 +1,5 @@
 import {Component, Input, Output, EventEmitter, OnInit} from 'angular2/core';
-import {RouteParams, Router} from 'angular2/router';
+import {RouteParams, Router, CanDeactivate, ComponentInstruction} from 'angular2/router';
 import {ProjectService} from './project.service';
 import {Project} from './project.model';
 import {EmployeeService} from '../employees/employee.service';
@@ -19,7 +19,7 @@ import {Response} from 'angular2/http';
     selector: 'project-form',
     templateUrl: 'app/projects/project-form.component.html',
     providers: [EmployeeService, ClientService],
-    directives: [MaterializeDirective, MaterialSelect, MaterialDatepicker, 
+    directives: [MaterializeDirective, MaterialSelect, MaterialDatepicker,
         MaterialToggle, MDLIntialValidationSuppressor, ProjectEmployeeListComponent],
     styles: [`
         .mdl-textfield.project-details-field{
@@ -33,19 +33,21 @@ import {Response} from 'angular2/http';
         }
     `]
 })
-export class ProjectFormComponent implements OnInit {
-    
+export class ProjectFormComponent implements OnInit, CanDeactivate {
+
     project: Project;
-    
+
+    initialProject: Project;
+
     clients: Client[];
-    
+
     employees: Employee[] = [];
-    
+
     /**
      * List of employee who are not part of the project
      */
     unmappedEmployees: Employee[] = [];
-    
+
     /**
      * Value set in employee selection dropdown
      */
@@ -58,88 +60,102 @@ export class ProjectFormComponent implements OnInit {
         private _employeeService: EmployeeService,
         private _clientService: ClientService) { }
 
-
+        
     loadProject(projectId: number) {
         if (projectId) {
             this._projectService
                 .getProject(projectId)
                 .subscribe((project: Project) => {
+                    this.initialProject = project;
                     this.project = Object.assign({}, project);
                     this.updateUnmappedEmpList();
                 });
         }
     }
-    
-    loadClients(){
+
+    loadClients() {
         this._clientService
             .getClients()
             .subscribe((clients: Client[]) => {
                 this.clients = clients;
-            });    
+            });
     }
-    
-    loadEmployees(){
+
+    loadEmployees() {
         this._employeeService
             .getEmployees()
             .subscribe((employees: Employee[]) => {
                 this.employees = employees;
                 this.updateUnmappedEmpList();
-            });    
+            });
     }
-    
-    clientOptionDisplayFn(client: Client){
-        return client ? client.name : ''; 
+
+    clientOptionDisplayFn(client: Client) {
+        return client ? client.name : '';
     }
-    
-    employeeOptionDisplayFn(employee: Employee){
-        return employee ? `${employee.name} (${employee.role})` : ''; 
+
+    employeeOptionDisplayFn(employee: Employee) {
+        return employee ? `${employee.name} (${employee.role})` : '';
     }
-    
-    updateUnmappedEmpList(){
+
+    updateUnmappedEmpList() {
         var projectEmployeeId = this.project ? this.project.employees.map(employee => employee.id) : [];
-        this.unmappedEmployees = this.employees.filter((employee: Employee)=>{
-            return projectEmployeeId.indexOf(employee.id) === -1; 
+        this.unmappedEmployees = this.employees.filter((employee: Employee) => {
+            return projectEmployeeId.indexOf(employee.id) === -1;
         });
     }
-    
-    addEmployeeToProject(){
-        if(this.employeeToAdd){
+
+    addEmployeeToProject() {
+        if (this.employeeToAdd) {
             this.project.employees.push(this.employeeToAdd);
             this.updateUnmappedEmpList();
-            this.employeeToAdd = null;    
+            this.employeeToAdd = null;
         }
     }
-    
-    cancel(){
+
+    cancel() {
         window.history.back();
     }
-    
-    save(){
+
+    save() {
         var observable: Observable<Response>;
-        
+
         // Converting dates to its number representation to store in db. This will be removed from here in future.
         this.project.startDate = +this.project.startDate;
         this.project.endDate = +this.project.endDate;
-        
-        if(this.project.id){
+
+        if (this.project.id) {
             observable = this._projectService.updateProject(this.project);
-        }else{
+        } else {
             observable = this._projectService.addProject(this.project);
         }
         observable.subscribe((result: any) => {
-            // passing project id for maintaining project selection
-            window.history.back();    
+            this.project = this.initialProject = (result || this.project);
+            window.history.back();
         });
     }
-    
+
+    routerCanDeactivate(next: ComponentInstruction, prev: ComponentInstruction) {
+        var isDataChanged = !_.isEqual(this.project, this.initialProject); 
+        if(isDataChanged){
+            if(window.confirm('You have unsaved changes. Do you want to cancel changes?')){
+                return true;
+            }else{
+                return false;
+            }
+        }else{
+            return true;
+        }
+    }
+
     ngOnInit() {
         var projectId = +this._routeParams.get('id');
-        if(projectId){
-            this.loadProject(projectId);    
-        }else{
-            this.project = new Project();
+        if (projectId) {
+            this.loadProject(projectId);
+        } else {
+            this.initialProject = this.project = new Project();
         }
-        
+
         this.loadClients();
         this.loadEmployees();
     }

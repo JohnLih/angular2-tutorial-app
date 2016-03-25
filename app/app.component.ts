@@ -1,5 +1,5 @@
 import {Component, provide} from 'angular2/core';
-import {ROUTER_PROVIDERS, ROUTER_DIRECTIVES, RouteConfig} from 'angular2/router';
+import {ROUTER_PROVIDERS, ROUTER_DIRECTIVES, RouteConfig, Router} from 'angular2/router';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {ProjectsComponent} from './projects/projects.component';
 import {ExceptionService} from './shared/services/exception.service';
@@ -29,4 +29,11 @@ import {ProjectService} from './projects/project.service';
 })
 export class AppComponent{
     
+    title: string;
+    
+    constructor(private _router: Router){
+        this._router.subscribe((url: string)=>{
+            this.title = url.startsWith('project') ? 'Projects' : 'Dashboard';
+        });
+    }
 }

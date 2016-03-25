@@ -104,7 +104,7 @@ export class ProjectFormComponent implements OnInit {
     }
     
     employeeOptionDisplayFn(employee: Employee){
-        return employee ? employee.name : ''; 
+        return employee ? `${employee.name} (${employee.role})` : ''; 
     }
     
     updateUnmappedEmpList(){

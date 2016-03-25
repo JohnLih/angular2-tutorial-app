@@ -3,12 +3,10 @@ import {ProjectListComponent} from './projects-list.component';
 import {ProjectDetailComponent} from './project-detail.component';
 import {ProjectFormComponent} from './project-form.component';
 import {Project} from './project.model';
-import {ProjectService} from './project.service';
 
 @Component({
     selector: 'projects',
     templateUrl: 'app/projects/projects.component.html',
-    providers: [ProjectService],
     directives: [ProjectListComponent, ProjectDetailComponent, ProjectFormComponent]
 })
 export class ProjectsComponent{

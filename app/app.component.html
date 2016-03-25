@@ -8,12 +8,13 @@
     <div class="mdl-layout__drawer">
         <span class="mdl-layout-title">PM App</span>
         <nav class="mdl-navigation">
-            <a class="mdl-navigation__link" href="">Projects</a>
+            <a class="mdl-navigation__link" [routerLink]="['Dashboard']" href="">Dashboard</a>
+            <a class="mdl-navigation__link" [routerLink]="['Projects']" href="">Projects</a>
         </nav>
     </div>
     <main class="mdl-layout__content">
         <div class="page-content">
-            <projects></projects>
+            <router-outlet></router-outlet>
         </div>
     </main>
 </div>

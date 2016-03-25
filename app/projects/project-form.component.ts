@@ -1,4 +1,5 @@
 import {Component, Input, Output, EventEmitter, OnInit} from 'angular2/core';
+import {RouteParams, Router} from 'angular2/router';
 import {ProjectService} from './project.service';
 import {Project} from './project.model';
 import {EmployeeService} from '../employees/employee.service';
@@ -34,21 +35,6 @@ import {Response} from 'angular2/http';
 })
 export class ProjectFormComponent implements OnInit {
     
-    @Input() 
-    set projectId(id: number){
-        if(id){
-            this.loadProject(id);    
-        }else{
-            this.project = new Project();
-        }
-    }
-    
-    @Output()
-    changesSaved: EventEmitter<Project> = new EventEmitter();
-    
-    @Output()
-    changesCancelled: EventEmitter<Project> = new EventEmitter();
-    
     project: Project;
     
     clients: Client[];
@@ -66,6 +52,8 @@ export class ProjectFormComponent implements OnInit {
     employeeToAdd: Employee;
 
     constructor(
+        private _router: Router,
+        private _routeParams: RouteParams,
         private _projectService: ProjectService,
         private _employeeService: EmployeeService,
         private _clientService: ClientService) { }
@@ -123,7 +111,7 @@ export class ProjectFormComponent implements OnInit {
     }
     
     cancel(){
-        this.changesCancelled.emit(this.project);    
+        window.history.back();
     }
     
     save(){
@@ -140,12 +128,18 @@ export class ProjectFormComponent implements OnInit {
         }
         observable.subscribe((result: any) => {
             // passing project id for maintaining project selection
-            this.changesSaved.emit(result ? result.id : this.project.id);    
+            window.history.back();    
         });
     }
     
     ngOnInit() {
-        this.loadProject(this.projectId);
+        var projectId = +this._routeParams.get('id');
+        if(projectId){
+            this.loadProject(projectId);    
+        }else{
+            this.project = new Project();
+        }
+        
         this.loadClients();
         this.loadEmployees();
     }

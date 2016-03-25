@@ -1,4 +1,5 @@
 import {Component, Input, Output, EventEmitter} from 'angular2/core';
+import {Router} from 'angular2/router';
 import {Project} from './project.model';
 import {ProjectService} from './project.service';
 import {PopoverDirective} from '../shared/directives/popover.directive';
@@ -12,13 +13,12 @@ import {ProjectEmployeeListComponent} from './project-employee-list.component';
 })
 export class ProjectDetailComponent{
     @Input() project;
-    @Output() edit: EventEmitter<Project> = new EventEmitter();
     @Output() delete: EventEmitter<number> = new EventEmitter();
     
-    constructor(private _projectService: ProjectService){}
+    constructor(private _router: Router, private _projectService: ProjectService){}
     
     editProject(project: Project){
-        this.edit.emit(project);
+        this._router.navigate(['ProjectEdit', {id: project.id}]);
     }
     
     deleteProject(project: Project){

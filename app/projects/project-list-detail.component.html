@@ -9,11 +9,9 @@
   
   <!-- 2. Communication using event binding -->
   <div class="mdl-cell mdl-cell--3-col">
-      <projects-list #projectsList (projectSelect)="onProjectSelect($event)" (addProject)="onProjectAdd()"></projects-list>
+      <projects-list #projectsList (projectSelect)="onProjectSelect($event)"></projects-list>
   </div>
   <div class="mdl-cell mdl-cell--9-col">
-      <project-detail *ngIf="!isAddOrEdit" [project]="selectedProject" (edit)="isAddOrEdit = true" (delete)="onProjectDelete($event)"></project-detail>
-      <project-form *ngIf="isAddOrEdit" [projectId]="selectedProject?.id" 
-        (changesCancelled) = "isAddOrEdit = false" (changesSaved)= "onProjectDataSaved($event)"></project-form>
+      <project-detail *ngIf="!isAddOrEdit" [project]="selectedProject" (delete)="onProjectDelete($event)"></project-detail>
   </div>  
 </div>

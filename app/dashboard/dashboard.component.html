@@ -7,9 +7,10 @@
             <h5>{{project.name}}</h5>
         </div>
         <div class="mdl-card__menu">
-            <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect mdl-color-text--accent-contrast">
+            <a class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect mdl-color-text--accent-contrast"
+                [routerLink]="['Projects', 'ProjectEdit', {id: project.id}]">
                 <i class="material-icons">mode_edit</i>
-            </button>
+            </a>
         </div>
         <div class="mdl-card__supporting-text">
             {{project.client.name}}

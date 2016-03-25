@@ -28,18 +28,6 @@ export class ProjectListDetailComponent{
         this.selectedProject = selectedProject;
     }
     
-    onProjectDataSaved(projectId: number){
-        this.isAddOrEdit = false;
-        this.projectListComponent.loadProjects().add(()=>{
-           this.projectListComponent.selectProjectById(projectId); 
-        });
-    }
-    
-    onProjectAdd(){
-        this.isAddOrEdit = true; 
-        this.selectedProject = null;
-    }
-    
     onProjectDelete(projectId: number){
         this.projectListComponent.removeProjectFromList(projectId);
         this.projectListComponent.selectFirstProject();

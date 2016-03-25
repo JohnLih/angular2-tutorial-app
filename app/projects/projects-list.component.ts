@@ -1,4 +1,5 @@
 import {Component, OnInit, Output, EventEmitter} from 'angular2/core';
+import {Router} from 'angular2/router';
 import {ProjectsFilterPipe} from './projects-filter.pipe';
 import {MaterializeElementDirective} from '../shared/directives/materialize-element.directive';
 import {ProjectService} from './project.service';
@@ -29,7 +30,6 @@ export class ProjectListComponent {
 
     @Output() projectSelect = new EventEmitter();
 
-    @Output() addProject = new EventEmitter();
     /**
      * List of projects
      */
@@ -45,9 +45,7 @@ export class ProjectListComponent {
      */
     filterText: string;
 
-    constructor(private _projectService: ProjectService) {
-
-    }
+    constructor(private _router: Router, private _projectService: ProjectService) { }
 
     /**
      * Loads projects
@@ -65,20 +63,20 @@ export class ProjectListComponent {
         this.selectedProject = selectedProject;
         this.projectSelect.emit(this.selectedProject);
     }
-    
-    getProjectById(projectId: number){
+
+    getProjectById(projectId: number) {
         return this.projects.filter(project => project.id === projectId)[0];
     }
-    
+
     /**
      * Selects project by its id. This method is called from project compoennt, 
      * to select added/edited project.
      */
-    selectProjectById(projectId: number){
+    selectProjectById(projectId: number) {
         var project = this.getProjectById(projectId);
         this.selectProject(project);
     }
-    
+
     /**
      * Selects first project on component initialization
      */
@@ -88,14 +86,14 @@ export class ProjectListComponent {
 
     addNewProject() {
         // passing null just to avoid compilation error by typescript
-        this.addProject.emit(null);
+        this._router.navigate(['ProjectAdd']);
     }
-    
-    removeProjectFromList(projectId: number){
+
+    removeProjectFromList(projectId: number) {
         var project = this.getProjectById(projectId);
         this.projects.splice(this.projects.indexOf(project), 1);
     }
-    
+
     /**
      * Component's hook which is executed on component initialization phase
      */

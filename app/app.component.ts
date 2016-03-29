@@ -4,7 +4,7 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 import {ProjectsComponent} from './projects/projects.component';
 import {ExceptionService} from './shared/services/exception.service';
 import {XHRBackend, HTTP_PROVIDERS} from 'angular2/http';
-import {InMemoryBackendService, SEED_DATA} from 'a2-in-memory-web-api/core';
+import {InMemoryBackendService, SEED_DATA, InMemoryBackendConfig} from 'a2-in-memory-web-api/core';
 import {InMemoryDataService} from '../api/in-memory-data.service';
 import {ProjectService} from './projects/project.service';
 
@@ -23,7 +23,8 @@ import {ProjectService} from './projects/project.service';
         ProjectService,
         ExceptionService,
         provide(XHRBackend, {useClass: InMemoryBackendService}), 
-        provide(SEED_DATA, {useClass: InMemoryDataService})
+        provide(SEED_DATA, {useClass: InMemoryDataService}),
+        provide(InMemoryBackendConfig, { useValue: { delay: 100 } }),
     ]
     
 })

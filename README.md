@@ -1,5 +1,8 @@
 # Creating Angular 2 App Step By Step
 
+## Project Management App
+![project-management-app](https://raw.githubusercontent.com/shripalsoni04/angular2-tutorial/master/images/0-Intro/0_1-Output-of-project-management-app.gif)
+
 ## Step 0
 Environment setup for angular 2 app
 

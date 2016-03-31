@@ -33,6 +33,8 @@ export class AppComponent{
     title: string;
     
     constructor(private _router: Router){
+        
+        // listening for route change and changing application title based on the url.
         this._router.subscribe((url: string)=>{
             this.title = url.startsWith('project') ? 'Projects' : 'Dashboard';
         });

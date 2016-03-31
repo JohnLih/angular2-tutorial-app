@@ -26,6 +26,9 @@ export class ProjectListDetailComponent{
         this.selectedProject = selectedProject;
     }
     
+    /**
+     * Handles delete event triggered by on click of delete button in project-detail component.
+     */
     onProjectDelete(projectId: number){
         this.projectListComponent.removeProjectFromList(projectId);
         this.projectListComponent.selectFirstProject();

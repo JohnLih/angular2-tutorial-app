@@ -23,6 +23,9 @@ export class DashboardComponent implements OnInit{
     
     constructor(private _projectService: ProjectService){}
     
+    /**
+     * Loads list of projects which are not in completed status.
+     */
     loadActiveProjects(){
         this._projectService.getProjects().subscribe((projects)=>{
             this.activeProjects = projects.filter(project => !project.isCompleted);

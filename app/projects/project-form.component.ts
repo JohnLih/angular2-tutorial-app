@@ -34,13 +34,26 @@ import {Response} from 'angular2/http';
     `]
 })
 export class ProjectFormComponent implements OnInit, CanDeactivate {
-
+    
+    /**
+     * project object bound to form controls
+     */
     project: Project;
-
+    
+    /**
+     * Captures project data on load of it in edit mode and on start in add mode.
+     * This is used for comparing it with actual data when user navigates without saving the data.
+     */
     initialProject: Project;
-
+    
+    /**
+     * List of clients for dropdown
+     */
     clients: Client[];
-
+    
+    /**
+     * List of employees for dropdown
+     */
     employees: Employee[] = [];
 
     /**
@@ -60,7 +73,10 @@ export class ProjectFormComponent implements OnInit, CanDeactivate {
         private _employeeService: EmployeeService,
         private _clientService: ClientService) { }
 
-        
+    
+    /**
+     * Loads project by its id
+     */
     loadProject(projectId: number) {
         if (projectId) {
             this._projectService
@@ -72,7 +88,10 @@ export class ProjectFormComponent implements OnInit, CanDeactivate {
                 });
         }
     }
-
+    
+    /**
+     * Loads list of clients
+     */
     loadClients() {
         this._clientService
             .getClients()
@@ -80,7 +99,10 @@ export class ProjectFormComponent implements OnInit, CanDeactivate {
                 this.clients = clients;
             });
     }
-
+    
+    /**
+     * Loads list of employees
+     */
     loadEmployees() {
         this._employeeService
             .getEmployees()
@@ -89,15 +111,26 @@ export class ProjectFormComponent implements OnInit, CanDeactivate {
                 this.updateUnmappedEmpList();
             });
     }
-
+    
+    /**
+     * Returns text to be displayed in client dropdown option. Called for each option.
+     * We will find better option for this in future.
+     */
     clientOptionDisplayFn(client: Client) {
         return client ? client.name : '';
     }
-
+    
+    /**
+     * Returns text to be displayed in employee dropdown option. Called for each option.
+     * We will find better option for this in future.
+     */
     employeeOptionDisplayFn(employee: Employee) {
         return employee ? `${employee.name} (${employee.role})` : '';
     }
-
+    
+    /**
+     * Updates unmapped employee list on add/remove of an employee or on load of a project. 
+     */
     updateUnmappedEmpList() {
         var projectEmployeeId = this.project ? this.project.employees.map(employee => employee.id) : [];
         this.unmappedEmployees = this.employees.filter((employee: Employee) => {
@@ -105,6 +138,9 @@ export class ProjectFormComponent implements OnInit, CanDeactivate {
         });
     }
 
+    /**
+     * Adds employee to the project and updates unmapped employee list.
+     */
     addEmployeeToProject() {
         if (this.employeeToAdd) {
             this.project.employees.push(this.employeeToAdd);
@@ -112,11 +148,17 @@ export class ProjectFormComponent implements OnInit, CanDeactivate {
             this.employeeToAdd = null;
         }
     }
-
+    
+    /**
+     * Navigates to previous page.
+     */
     cancel() {
         window.history.back();
     }
-
+    
+    /**
+     * Inserts/Updates data to in memory store and navigates to previous page.
+     */
     save() {
         var observable: Observable<Response>;
 
@@ -130,11 +172,16 @@ export class ProjectFormComponent implements OnInit, CanDeactivate {
             observable = this._projectService.addProject(this.project);
         }
         observable.subscribe((result: any) => {
+            // re-initializing initialProject value with new data.
             this.project = this.initialProject = (result || this.project);
             window.history.back();
         });
     }
 
+    /**
+     * Prompts the user to save data if he/she navigates aways from page without saving the data.
+     * This is one of the router lifecycle hooks.
+     */
     routerCanDeactivate(next: ComponentInstruction, prev: ComponentInstruction) {
         var isDataChanged = !_.isEqual(this.project, this.initialProject); 
         if(isDataChanged){
@@ -147,7 +194,11 @@ export class ProjectFormComponent implements OnInit, CanDeactivate {
             return true;
         }
     }
-
+    
+    /**
+     * Initiation logic for the project form component.
+     * This is one of the lifecycle hooks of component.
+     */
     ngOnInit() {
         var projectId = +this._routeParams.get('id');
         if (projectId) {

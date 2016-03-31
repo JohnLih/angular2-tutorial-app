@@ -66,7 +66,7 @@ export class InMemoryDataService {
                     id: 4,
                     name: 'Client 4',
                     timezone: 'AEST',
-                    country: 'Austrilia',
+                    country: 'Australia',
                     email: 'client4@domain.com'
                 },
                 details: 'Project 4 Description',
@@ -139,7 +139,7 @@ export class InMemoryDataService {
                 id: 4,
                 name: 'Client 4',
                 timezone: 'AEST',
-                country: 'Austrilia',
+                country: 'Australia',
                 email: 'client4@domain.com'
             }
         ];

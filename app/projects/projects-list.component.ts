@@ -83,9 +83,11 @@ export class ProjectListComponent {
     selectFirstProject() {
         this.selectProject(this.projects[0]);
     }
-
+    
+    /**
+     * Navigates to project-form to create new project.
+     */
     addNewProject() {
-        // passing null just to avoid compilation error by typescript
         this._router.navigate(['ProjectAdd']);
     }
 

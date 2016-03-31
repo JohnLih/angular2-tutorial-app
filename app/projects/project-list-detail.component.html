@@ -1,4 +1,4 @@
-<div class="mdl-grid">
+<div class="mdl-grid animated slideInRight">
   <!-- 1. Communication using local variable -->
   <!--<div class="mdl-cell mdl-cell--3-col">
       <projects-list #projectList></projects-list>
@@ -12,6 +12,6 @@
       <projects-list #projectsList (projectSelect)="onProjectSelect($event)"></projects-list>
   </div>
   <div class="mdl-cell mdl-cell--9-col">
-      <project-detail *ngIf="!isAddOrEdit" [project]="selectedProject" (delete)="onProjectDelete($event)"></project-detail>
+      <project-detail [project]="selectedProject" (delete)="onProjectDelete($event)"></project-detail>
   </div>  
 </div>

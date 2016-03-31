@@ -19,8 +19,6 @@ export class ProjectListDetailComponent{
      */
     selectedProject: Project;
     
-    isAddOrEdit: boolean = false;
-    
     /**
      * Passes selectedProject object to project-detail component on selection change in project-list component.
      */
